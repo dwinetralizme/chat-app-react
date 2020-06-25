@@ -12,11 +12,11 @@ class LoginForm extends Component {
     }
 
     setUser = ({user,isUser})=>{
-        console.log(user, isUser);
-        if(user){
+        if(isUser){
             this.setError("Username taken")
         }else{
             this.props.setUser(user)
+            this.setError("")
         }
     }
 
@@ -29,7 +29,6 @@ class LoginForm extends Component {
         const {socket} = this.props
         const {nickname} = this.state
 
-        // console.log(this.props)
 
         socket.emit(VERIFY_USER, nickname, this.setUser);
 
